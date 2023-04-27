@@ -143,7 +143,7 @@ function_verify () {
     print_center -ama "CONTACTE A @Rufu99"
     msg -bar
   	rm ${ADMRufu}
-    [[ -e $HOME/list-arq ]] && rm $HOME/lista-arq
+    [[ -e $HOME/list-arq ]] && rm $HOME/list-arq
     exit
   } || {
   ### INTALAR VERCION DE SCRIPT
