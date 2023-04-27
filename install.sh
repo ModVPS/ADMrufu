@@ -143,7 +143,7 @@ function_verify () {
     print_center -ama "CONTACTE A @Rufu99"
     msg -bar
   	rm ${ADMRufu}
-    [[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq
+    [[ -e $HOME/list-arq ]] && rm $HOME/lista-arq
     exit
   } || {
   ### INTALAR VERCION DE SCRIPT
@@ -249,10 +249,10 @@ done
 msg -bar3
 msg -ne " Verificando Key: "
 cd $HOME
-wget -O $HOME/lista-arq $(ofus_rufu "$Key")/$IP > /dev/null 2>&1 && msg -verd "Key Completa" || {
+wget -O $HOME/list-arq $(ofus_rufu "$Key")/$IP > /dev/null 2>&1 && msg -verd "Key Completa" || {
    msg -verm2 "Key Invalida"
    msg -bar
-   [[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq
+   [[ -e $HOME/list-arq ]] && rm $HOME/list-arq
    exit
    }
 msg -bar3
@@ -261,7 +261,7 @@ IP=$(ofus_rufu "$Key" | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | gre
 sleep 1s
 function_verify
 
-if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "KEY INVALIDA!") ]]; then
+if [[ -e $HOME/list-arq ]] && [[ ! $(cat $HOME/list-arq|grep "KEY INVALIDA!") ]]; then
   title -ama '[Proyect by @Rufu99]'
   print_center -ama 'INSTALANDO SCRIPT ADMRufu'
   sleep 2; del 1
@@ -269,16 +269,15 @@ if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "KEY INVALIDA!") 
    REQUEST=$(ofus_rufu "$Key"|cut -d'/' -f2)
    [[ ! -d ${SCPinstal} ]] && mkdir ${SCPinstal}
    print_center -ama 'Descarga de archivos.....'
-   for arqx in $(cat $HOME/lista-arq); do
+   for arqx in $(cat $HOME/list-arq); do
     wget --no-check-certificate -O ${SCPinstal}/${arqx} ${IP}:81/${REQUEST}/${arqx} > /dev/null 2>&1 && {
     verificar_arq "${arqx}"
-   } 
-   #|| {
-    #del 1
-    #print_center -verm2 'Instalacion fallida'
-    #sleep 2s
-    #error_fun
-   #}
+   } || {
+    del 1
+    print_center -verm2 'Instalacion fallida'
+    sleep 2s
+    error_fun
+   }
    done
 
    autoStart="${ADMRufu}/bin" && [[ ! -d $autoStart ]] && mkdir $autoStart
@@ -302,7 +301,7 @@ if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "KEY INVALIDA!") 
 
    print_center -verd 'Instalacion completa'
    sleep 2s
-   rm $HOME/lista-arq
+   rm $HOME/list-arq
    [[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal}
    rm -rf /usr/bin/menu
    rm -rf /usr/bin/adm
@@ -315,7 +314,7 @@ if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "KEY INVALIDA!") 
    clear
    title "-- ADMRufu INSTALADO --"
  else
-  [[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq
+  [[ -e $HOME/list-arq ]] && rm $HOME/list-arq
   title -verm2 'KEY INVALIDA'
   print_center -ama 'Esta key no es valida o ya fue usada\nContacta con @Rufu99'
   msg -bar
