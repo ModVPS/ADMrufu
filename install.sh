@@ -99,7 +99,7 @@ dependencias(){
 	done
 }
 
-ofus(){
+ofus_rufu(){
   unset server
   server=$(echo ${txt_ofuscatw}|cut -d':' -f1)
   unset txtofus
@@ -257,7 +257,7 @@ wget -O $HOME/lista-arq $(ofus "$Key")/$IP > /dev/null 2>&1 && msg -verd "Key Co
    }
 msg -bar3
 
-IP=$(ofus "$Key" | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}') && echo "$IP" > /usr/bin/vendor_code
+IP=$(ofus_rufu "$Key" | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}') && echo "$IP" > /usr/bin/vendor_code
 sleep 1s
 function_verify
 
@@ -266,7 +266,7 @@ if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "KEY INVALIDA!") 
   print_center -ama 'INSTALANDO SCRIPT ADMRufu'
   sleep 2; del 1
 
-   REQUEST=$(ofus "$Key"|cut -d'/' -f2)
+   REQUEST=$(ofus_rufu "$Key"|cut -d'/' -f2)
    [[ ! -d ${SCPinstal} ]] && mkdir ${SCPinstal}
    print_center -ama 'Descarga de archivos.....'
    for arqx in $(cat $HOME/lista-arq); do
@@ -292,7 +292,7 @@ if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "KEY INVALIDA!") 
 
    del 1
 
-   data=$(ofus $Key|awk -F '/' '{print $2}')
+   data=$(ofus_rufu $Key|awk -F '/' '{print $2}')
 
    export IDTG=$(echo $data|cut -d '_' -f2)
    export IDKEY=$(echo $data|cut -d '_' -f1)
