@@ -249,7 +249,7 @@ done
 msg -bar3
 msg -ne " Verificando Key: "
 cd $HOME
-wget -O $HOME/lista-arq $(ofus "$Key")/$IP > /dev/null 2>&1 && msg -verd "Key Completa" || {
+wget -O $HOME/lista-arq $(ofus_rufu "$Key")/$IP > /dev/null 2>&1 && msg -verd "Key Completa" || {
    msg -verm2 "Key Invalida"
    msg -bar
    [[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq
