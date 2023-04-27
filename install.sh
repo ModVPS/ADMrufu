@@ -272,12 +272,13 @@ if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "KEY INVALIDA!") 
    for arqx in $(cat $HOME/lista-arq); do
     wget --no-check-certificate -O ${SCPinstal}/${arqx} ${IP}:81/${REQUEST}/${arqx} > /dev/null 2>&1 && {
     verificar_arq "${arqx}"
-   } || {
-    del 1
-    print_center -verm2 'Instalacion fallida'
-    sleep 2s
-    error_fun
-   }
+   } 
+   #|| {
+    #del 1
+    #print_center -verm2 'Instalacion fallida'
+    #sleep 2s
+    #error_fun
+   #}
    done
 
    autoStart="${ADMRufu}/bin" && [[ ! -d $autoStart ]] && mkdir $autoStart
